@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colors Constructor</title>
+    <link rel="icon" type="image/png" href="img/color.png">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            font-size: .9rem;
+        }
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        #colors-app {
+            padding: 5rem 0;
+            width: 100%;
+            height: auto;
+            min-height: 100vh;
+            background: url(img/11.jpeg) no-repeat center;
+            background-size: cover;
+            transition: .3s
+        }
+        .main-title {
+            font-size: 3rem;
+            color: #fff;
+            font-weight: 300;
+            text-shadow: 0 2px 8px #333
+        }
+        .rgba-block, .html-block {
+            width: 100%;
+            height: auto;
+            padding: 2rem;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px 1px rgb(64 60 67 / 16%);
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+        .rgba-block-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .rgba-subheading {
+            font-weight: 300;
+            padding: 0.5rem;
+            background: #fff;
+            margin-right: 1rem;
+            border-radius: 4px;
+            border: 1px solid #ccc
+        }
+        .rgba-input-number {
+            width: 5rem;
+            padding: 0.5rem 1rem;
+            background-color: #fff;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px 1px rgb(64 60 67 / 16%);
+            border-color: transparent;
+            margin-right: 1rem;
+        }
+        .rgba-input-range {
+            width: 16rem
+        }
+        .rgba-output, .html-output {
+            padding: 0.5rem 1rem;
+            background-color: #fff;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px 1px rgb(64 60 67 / 16%);
+            margin-bottom: 1rem;
+        }
+        .html-input {
+            width: 12rem;
+            height: 3rem;
+            background-color: #fff;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px 1px rgb(64 60 67 / 16%);
+            margin-right: 1rem;
+            border-color: transparent;
+            outline: none;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .author {
+            color: #fff;
+            text-shadow: 0 2px 4px #111;
+            font-size: 12px;
+            margin-top: 2rem;
+        }
+        .author a {
+            color: #B5F1F8;
+        }
+        @media (max-width: 600px) {
+            body {
+                font-size: .8rem;
+            }
+            #colors-app {
+                padding: 3rem 0;
+            }
+            .rgba-input-number {
+                width: 3rem;
+                padding: 0.5rem;
+            }
+            .rgba-block, .html-block {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper" id="colors-app" >
+        <div class="container">
+            <h1 class="main-title">{{main_title}}</h1>
+            <hr>
+            <div class="rgba-block" :style="{backgroundColor: rgbaColor}">
+                <div class="rgba-block-item">
+                    <h3 class="rgba-subheading">R:</h3>
+                    <input type="number" v-model="red" min="0" max="255" class="rgba-input-number">
+                    <input type="range" v-model="red" min="0" max="255" step="1" class="rgba-input-range">
+                </div>
+                <div class="rgba-block-item">
+                    <h3 class="rgba-subheading">G:</h3>
+                    <input type="number" v-model="green" min="0" max="255" class="rgba-input-number">
+                    <input type="range" v-model="green" min="0" max="255" step="1" class="rgba-input-range">
+                </div>
+                <div class="rgba-block-item">
+                    <h3 class="rgba-subheading">B:</h3>
+                    <input type="number" v-model="blue" min="0" max="255" class="rgba-input-number">
+                    <input type="range" v-model="blue" min="0" max="255" step="1" class="rgba-input-range">
+                </div>
+                <div class="rgba-block-item">
+                    <h3 class="rgba-subheading">A:</h3>
+                    <input type="number" v-model="alfa" min="0" max="1" step="0.1" class="rgba-input-number">
+                    <input type="range" v-model="alfa" min="0" max="1" step="0.1" class="rgba-input-range">
+                </div>
+                <div class="rgba-output">
+                    background-color: rgba({{this.red}}, {{this.green}}, {{this.blue}}, {{this.alfa}});
+                </div>
+            </div>
+            <div class="html-block" :style="{backgroundColor: htmlColor}">
+                <div class="html-output">
+                    Numbers allowed: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+                </div>
+                <div class="html-output">
+                    Letters allowed: A, B, C, D, E, F
+                </div>
+                <div class="html-input-group">
+                    <input type="text" v-model="htmlInput" class="html-input" maxlength="8">
+                </div>
+                <div class="html-output">
+                    background-color: #{{this.htmlInput}};
+                </div>
+            </div>
+            <p class="author">
+                Made by <a href="https://redhatdev16.github.io/portfolio/" target="_blank">redhatdev16</a>
+            </p>
+        </div>
+    </div>
+    
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script>
+        const colorsApp = new Vue({
+            el: '#colors-app',
+            data() {
+                return {
+                    main_title: 'Colors constructor',
+                    red: 255,
+                    green: 255,
+                    blue: 255,
+                    alfa: 1,
+                    htmlInput: 'FFFFFF70'
+                }
+            },
+            computed: {
+                rgbaColor() {
+                    return `rgb(${this.red}, ${this.green}, ${this.blue}, ${this.alfa})`
+                },
+                htmlColor() {
+                    return `#${this.htmlInput}`
+                }
+            }
+        })
+    </script>
+</body>
+</html>
